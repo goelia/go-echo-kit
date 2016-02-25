@@ -1,25 +1,26 @@
 package utils
 
 import (
-	"time"
 	crand "crypto/rand"
+	"time"
 
-	"github.com/dgrijalva/jwt-go"
-	"gopkg.in/go-playground/validator.v8"
+	"fmt"
 	"io"
 	"log"
-	"golang.org/x/crypto/scrypt"
-	"fmt"
-	"regexp"
 	"math/rand"
+	"regexp"
+
+	"github.com/dgrijalva/jwt-go"
+	"golang.org/x/crypto/scrypt"
+	"gopkg.in/go-playground/validator.v8"
 )
 
 var validate *validator.Validate
 
 const (
-// PwSaltBytes ...
+	// PwSaltBytes ...
 	PwSaltBytes = 32
-// PwHashBytes ...
+	// PwHashBytes ...
 	PwHashBytes = 64
 )
 
@@ -27,6 +28,7 @@ func init() {
 	config := &validator.Config{TagName: "validate"}
 	validate = validator.New(config)
 }
+
 //SigninType 验证登录用户名类型
 func SigninType(name string) string {
 	if err := validate.Field(name, "required,email"); err == nil {
@@ -70,7 +72,7 @@ func Salt() []byte {
 
 // Hash 密码加密
 func Hash(salt, password []byte) []byte {
-	hash, err := scrypt.Key([]byte(password), salt, 1 << 14, 8, 1, PwHashBytes)
+	hash, err := scrypt.Key([]byte(password), salt, 1<<14, 8, 1, PwHashBytes)
 	if err != nil {
 		log.Fatal(err)
 	}

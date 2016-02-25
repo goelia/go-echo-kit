@@ -27,7 +27,7 @@ const (
 	Expired
 )
 
-var errorText = map[int]string{
+var errText = map[int]string{
 	BadRequest:       "不合法的请求",
 	MethodNotAllowed: "不允许的方法访问",
 	NotValid:         "无效的",
@@ -41,8 +41,9 @@ var errorText = map[int]string{
 	Expired:          "已过期",
 }
 
-func ErrorText(code int) string {
-	return errorText[code]
+// ErrText 对应错误码描述
+func ErrText(code int) string {
+	return errText[code]
 }
 
 // Err response errors
@@ -55,11 +56,12 @@ type Err struct {
 
 func (e *Err) Error() string {
 	if e.Message == "" {
-		e.Message = errorText[e.Code]
+		e.Message = errText[e.Code]
 	}
 	return fmt.Sprintf("%s", e.Message)
 }
 
+// New 新建自定义错误
 func New(code int, message ...string) error {
 	var msg string
 	if len(message) > 0 {

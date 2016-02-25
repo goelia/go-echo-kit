@@ -74,7 +74,6 @@
       <root url="file://$PROJECT_DIR$/../../qor/worker/.git" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/text/.git" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/tools/go/types/testdata" />
-      <root url="file://$PROJECT_DIR$/../../../bitbucket.org/corn/.git" />
       <root url="file://$PROJECT_DIR$/../../qor/activity/.git" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/tools/cmd/stringer/testdata" />
       <root url="file://$PROJECT_DIR$/../../cznic/exp/lldb/testdata" />
@@ -112,7 +111,6 @@
       <root url="file://$PROJECT_DIR$/../../qor/qor-example/.git" />
       <root url="file://$PROJECT_DIR$/../../codegangsta/cli/.git" />
       <root url="file://$PROJECT_DIR$/../../../gopkg.in/labstack/echo.v1/website/layouts/_default" />
-      <root url="file://$PROJECT_DIR$/../../../bitbucket.org/corn/.idea" />
       <root url="file://$PROJECT_DIR$/../auth/.git" />
       <root url="file://$PROJECT_DIR$/../../labstack/echo/_fixture" />
       <root url="file://$PROJECT_DIR$/../../codegangsta/gin/.git" />

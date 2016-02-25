@@ -2,13 +2,13 @@ package models
 
 import (
 	"fmt"
-	"github.com/goelia/go-echo-kit/conf"
+	"strconv"
+	"time"
+
 	"github.com/goelia/go-echo-kit/errs"
 	"github.com/goelia/go-echo-kit/utils"
 	"github.com/jinzhu/gorm"
 	"gopkg.in/gomail.v2"
-	"strconv"
-	"time"
 )
 
 //CodeAuth 校验码登录
@@ -75,9 +75,6 @@ func (a *CodeAuth) Signin() error {
 // seconds 返回重试时间
 func (a *CodeAuth) RefreshCode(subject, nickname string) (int, error) {
 	st := utils.SigninType(a.Name)
-	config := conf.GetConfig()
-	ac := config.Auth
-	mc := config.Mailer
 	//1. 验证用户名格式
 	if st == "" {
 		return 0, errs.New(errs.NotSupported, "不支持的登录方式")

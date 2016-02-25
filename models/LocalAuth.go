@@ -1,9 +1,9 @@
 package models
 
 import (
-	"bitbucket.org/corn/utils"
 	"github.com/goelia/go-echo-kit/errs"
 	"github.com/jinzhu/gorm"
+"github.com/goelia/go-echo-kit/utils"
 )
 
 //LocalAuth 系统登录

@@ -6,9 +6,9 @@ import (
 	"strings"
 
 	"github.com/jinzhu/gorm"
-// mysql
+	// mysql
 	_ "github.com/go-sql-driver/mysql"
-// postgres
+	// postgres
 	_ "github.com/lib/pq"
 )
 
@@ -28,15 +28,15 @@ type DBConfig struct {
 func (dc DBConfig) New() *gorm.DB {
 	var (
 		err error
-		db gorm.DB
+		db  gorm.DB
 
-		adapter = strings.ToLower(dc.Adapter)
-		url string
+		adapter  = strings.ToLower(dc.Adapter)
+		url      string
 		username = dc.Username
 		password = dc.Password
-		host = dc.Host
-		port = dc.Port
-		dbName = dc.Name
+		host     = dc.Host
+		port     = dc.Port
+		dbName   = dc.Name
 	)
 	// DBConfig := dc.DBConfig
 	switch adapter {
@@ -60,5 +60,6 @@ func (dc DBConfig) New() *gorm.DB {
 	}
 	db.LogMode(dc.Debug)
 	db.SingularTable(dc.SingularTable)
+
 	return &db
 }

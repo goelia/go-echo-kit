@@ -1,19 +1,20 @@
 package main
 
 import (
+	"net"
+	"net/http"
+
 	"github.com/goelia/go-echo-kit/errs"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	"github.com/nu7hatch/gouuid"
 	"github.com/rs/cors"
 	"github.com/thoas/stats"
-	"net"
-	"net/http"
-	//"errors"
-	"bitbucket.org/simplecn/apps/api/middlewares"
-	"github.com/goelia/go-echo-kit/conf"
-	"github.com/goelia/go-echo-kit/handles"
+
 	"strconv"
+
+	"github.com/goelia/go-echo-kit/handles"
+	"github.com/goelia/go-echo-kit/middlewares"
 )
 
 func main() {

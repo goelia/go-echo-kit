@@ -1,7 +1,6 @@
 package handles
 
 import (
-	"github.com/goelia/go-echo-kit/conf"
 	"github.com/goelia/go-echo-kit/errs"
 	"github.com/goelia/go-echo-kit/models"
 	"github.com/goelia/go-echo-kit/utils"
