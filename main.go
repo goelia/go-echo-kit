@@ -1,14 +1,19 @@
 package main
 
 import (
+	"github.com/goelia/go-echo-kit/errs"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
+	"github.com/nu7hatch/gouuid"
 	"github.com/rs/cors"
 	"github.com/thoas/stats"
 	"net"
-	"github.com/nu7hatch/gouuid"
-	"github.com/goelia/go-echo-kit/errs"
 	"net/http"
+	//"errors"
+	"bitbucket.org/simplecn/apps/api/middlewares"
+	"github.com/goelia/go-echo-kit/conf"
+	"github.com/goelia/go-echo-kit/handles"
+	"strconv"
 )
 
 func main() {
@@ -19,7 +24,7 @@ func main() {
 		code := http.StatusInternalServerError
 		msg := http.StatusText(code)
 		if er, ok := err.(*errs.Err); ok {
-			code = 400
+			code = 422
 			msg = er.Error()
 		}
 		if !c.Response().Committed() {
@@ -77,7 +82,20 @@ func main() {
 
 	t := e.Group("/test")
 	t.Get("/error", func(c *echo.Context) error {
-		return &errs.Err{Code:errs.BadRequest}
+		//panic(errors.New("test error"))
+		return &errs.Err{Code: errs.BadRequest}
 	})
-	e.Run(":3000")
+
+	//用户登录
+	v.Post("/auth/signin", handles.Signin)
+	//发送验证码
+	v.Post("/auth/code", handles.RefreshCode)
+
+	auth := v.Group("/")
+	auth.Use(middlewares.JWTAuth(conf.GetConfig().SigningKey))
+	auth.Get("auth", func(c *echo.Context) error {
+		return c.JSON(200, "success auth.")
+	})
+
+	e.Run(":" + strconv.Itoa(conf.GetConfig().Port))
 }

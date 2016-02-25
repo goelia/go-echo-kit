@@ -96,6 +96,7 @@
       <root url="file://$PROJECT_DIR$/../../nsf/gocode/_testing" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/image/testdata" />
       <root url="file://$PROJECT_DIR$/../../qor/location/.git" />
+      <root url="file://$PROJECT_DIR$/.git" />
       <root url="file://$PROJECT_DIR$/../../lxn/win/.git" />
       <root url="file://$PROJECT_DIR$/../../../qiniupkg.com/x/.git" />
       <root url="file://$PROJECT_DIR$/../../../golang.org/x/image/.git" />

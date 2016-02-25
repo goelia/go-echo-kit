@@ -1,9 +1,9 @@
-package mw
+package middlewares
 
 import (
-	"github.com/labstack/echo"
-	"github.com/dgrijalva/jwt-go"
 	"fmt"
+	"github.com/dgrijalva/jwt-go"
+	"github.com/labstack/echo"
 	"net/http"
 )
 
@@ -24,8 +24,8 @@ func JWTAuth(key string) echo.HandlerFunc {
 		auth := c.Request().Header.Get("Authorization")
 		l := len(Bearer)
 
-		if len(auth) > l + 1 && auth[:l] == Bearer {
-			t, err := jwt.Parse(auth[l + 1:], func(token *jwt.Token) (interface{}, error) {
+		if len(auth) > l+1 && auth[:l] == Bearer {
+			t, err := jwt.Parse(auth[l+1:], func(token *jwt.Token) (interface{}, error) {
 
 				// Always check the signing method
 				if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {

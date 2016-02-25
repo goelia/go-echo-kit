@@ -1,0 +1,22 @@
+#db = "dbs.default" #默认使用的数据库
+SigningKey ="somethingsupersecret"
+Port=9000
+[Mailer]
+Host     = "smtp.mxhichina.com"
+Port     = 25
+Username = "service@simplecn.com"
+Password = "Simplecn1111"
+NickName = "简简单单"
+[db]
+	adapter="mysql"
+	host ="127.0.0.1"
+	port = 3306
+	username = "root"
+	password = "123456"
+	name ="ohoh" #数据库
+	singularTable = true#数据库表名是否开启为单数
+	debug = true
+[auth]
+AuthCodeExpSeconds = 300 #5m
+AuthCodeRefreshExpSeconds = 120 #2m
+AuthCodeSigninTmpl = "【%s】你的登录验证码为:  %s , %d分钟内使用有效，请立即使用."
