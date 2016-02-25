@@ -15,6 +15,7 @@ import (
 
 	"github.com/goelia/go-echo-kit/handles"
 	"github.com/goelia/go-echo-kit/middlewares"
+"github.com/goelia/go-echo-kit/config"
 )
 
 func main() {
@@ -93,10 +94,10 @@ func main() {
 	v.Post("/auth/code", handles.RefreshCode)
 
 	auth := v.Group("/")
-	auth.Use(middlewares.JWTAuth(conf.GetConfig().SigningKey))
+	auth.Use(middlewares.JWTAuth(config.GetConfig().SigningKey))
 	auth.Get("auth", func(c *echo.Context) error {
 		return c.JSON(200, "success auth.")
 	})
 
-	e.Run(":" + strconv.Itoa(conf.GetConfig().Port))
+	e.Run(":" + strconv.Itoa(config.GetConfig().Port))
 }

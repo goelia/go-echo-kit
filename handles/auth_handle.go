@@ -5,6 +5,7 @@ import (
 	"github.com/goelia/go-echo-kit/models"
 	"github.com/goelia/go-echo-kit/utils"
 	"github.com/labstack/echo"
+"github.com/goelia/go-echo-kit/config"
 )
 
 // Signin 用户登录
@@ -64,7 +65,7 @@ func Signin(c *echo.Context) error {
 	//if employee != nil {
 	//	claims["employee"] = employee
 	//}
-	signingKey := conf.GetConfig().SigningKey
+	signingKey := config.GetConfig().SigningKey
 	jwtToken := utils.JwtToken(signingKey, claims)
 	return c.JSON(200, map[string]interface{}{
 		"token": jwtToken,

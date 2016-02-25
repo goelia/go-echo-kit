@@ -8,18 +8,13 @@ import (
 
 var (
 	db *gorm.DB
-	ac AuthConfig
+	ac config.AuthConfig
 	mc sender.MailConfig
 )
 
 func init() {
 	db = config.DB()
 	ac = config.GetConfig().AuthConfig
+	mc = config.GetConfig().MailConfig
 }
 
-// AuthConfig auth'config
-type AuthConfig struct {
-	AuthCodeRefreshExpSeconds int `default:"120"`
-	AuthCodeExpSeconds        int `default:"300"`
-	AuthCodeSigninTmpl        string
-}

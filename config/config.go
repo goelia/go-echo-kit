@@ -5,7 +5,6 @@ import (
 	"github.com/goelia/go-echo-kit/sender"
 	"github.com/koding/multiconfig"
 	"github.com/jinzhu/gorm"
-	"github.com/goelia/go-echo-kit/models"
 )
 
 var (
@@ -17,10 +16,18 @@ var (
 type Config struct {
 	SigningKey string
 	Port       int
-	AuthConfig models.AuthConfig
+	AuthConfig AuthConfig
 	DBConfig   database.DBConfig
 	MailConfig sender.MailConfig
 }
+
+// AuthConfig auth'config
+type AuthConfig struct {
+	AuthCodeRefreshExpSeconds int `default:"120"`
+	AuthCodeExpSeconds        int `default:"300"`
+	AuthCodeSigninTmpl        string
+}
+
 
 func init() {
 	m := multiconfig.NewWithPath("config.toml")
