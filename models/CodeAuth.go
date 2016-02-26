@@ -25,9 +25,11 @@ type CodeAuth struct {
 //Signin 校验码登录
 func (a *CodeAuth) Signin() error {
 	//1. 验证用户名格式
-	if utils.SigninType(a.Name) == "" {
+	typ := utils.SigninType(a.Name)
+	if typ == "" {
 		return errs.New(errs.NotSupported, "不支持的登录方式")
 	}
+	a.Type = typ
 	//2. 查找数据库记录
 	if err := db.Where("name=? and code=?", a.Name, a.Code).First(a).Error; err != nil {
 		if err == gorm.RecordNotFound {
@@ -142,7 +144,7 @@ func (a *CodeAuth) RefreshCode(subject, nickname string) (int, error) {
 		m.SetHeader("Subject", subject)
 		m.SetBody("text/html", content)
 
-		if err = dialer.DialAndSend(m); err == nil {
+		if err = dialer.DialAndSend(m); err != nil {
 			tx.Rollback()
 			return 0, err
 		}
